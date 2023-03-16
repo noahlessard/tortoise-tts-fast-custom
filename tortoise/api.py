@@ -514,6 +514,11 @@ class TextToSpeech:
                 "diffusion_iterations": 30,
                 "sampler": "dpm++2m",
             },
+            "very_fastv2": {
+                "num_autoregressive_samples": 42,
+                "diffusion_iterations": 30,
+                "sampler": "dpm++2m",
+            },
             "fast": {
                 "num_autoregressive_samples": 96,
                 "diffusion_iterations": 20,
@@ -542,12 +547,12 @@ class TextToSpeech:
         verbose=True,
         use_deterministic_seed=None,
         return_deterministic_state=False,
-        latent_averaging_mode=0,
+        latent_averaging_mode=0, #0
         # autoregressive generation parameters follow
         num_autoregressive_samples=512,
-        temperature=0.8,
-        length_penalty=1,
-        repetition_penalty=2.0,
+        temperature=0.8, #0.8
+        length_penalty=1.0, #1
+        repetition_penalty=2.1, # 2
         top_p=0.8,
         max_mel_tokens=500,
         # CVVP parameters follow
