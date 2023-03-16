@@ -7,7 +7,7 @@
 - `--kv_cache` is now **fixed**, and produces outputs **identical to the original tortoise repo**. It is also enabled by default now because of this.
 - new: :sparkles: [streamlit webui](#Webui) by @Ryu
 - Want better voice cloning? We now have [tortoise fine-tuning](https://github.com/152334H/DL-Art-School); load fine-tuned GPT models with `--ar-checkpoint`!
-- added [voicefixer](https://github.com/haoheliu/voicefixer)
+- added [voicefixer](https://github.com/haoheliu/voicefixer).
 
 [click me](#installation) to skip to installation && usage!
 
@@ -98,6 +98,7 @@ Note that if you have the original tortoise installed,
 - You will need to uninstall it (`pip uninstall tortoise`)
 - You will need to install the new requirements (`pip install -r requirements.txt`)
 - You may want to install this repository as a symbolic link (`pip install -e .`), as this repository will be updated frequently
+- You might need to delete the org tortoise file in your pythons appdata.
 
 ### poetry install
 
@@ -112,7 +113,7 @@ poetry shell
 
 If you are experiencing errors related to GPU usage (or lackthereof), please see the instructions on [the pytorch website](https://pytorch.org/get-started/locally/) to install pytorch with proper GPU support.
 
-## CLI Usage
+## CLI Usage (most of these don't work anymore)
 
 For maximum speed (and worst quality), you can try:
 
@@ -144,6 +145,32 @@ If you want to load a [fine-tuned autoregressive model](https://github.com/15233
 
 ```sh
 ./script/tortoise-tts.py --preset very_fast --ar-checkpoint /path/to/checkpoint.pth --text #...
+```
+
+## Python Api Examples:
+
+```python
+
+import torch
+import torchaudio
+import torch.nn as nn
+import torch.nn.functional as F
+from tortoise.api import TextToSpeech
+from tortoise.utils.audio import load_audio, load_voice, load_voices
+from tortoise.inference import save_gen_with_voicefix
+
+tts = TextToSpeech()
+
+# generate a piece of audio with voice samples
+voice_samples, conditioning_latents = load_voice("cust_voice_in_tortoise/voices")
+gen = tts.tts_with_preset("text", voice_samples=voice_samples, conditioning_latents=conditioning_latents, preset="very_fastv2")
+
+# to save a copy of audio
+torchaudio.save('generated.wav',gen, 24000)
+
+# to save a copy with voicefix (recommened for faster presets)
+save_gen_with_voicefix( concat, 'voicefixer.wav', squeeze=False, voicefixer=True,)
+
 ```
 
 ## Webui

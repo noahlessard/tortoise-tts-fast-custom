@@ -515,7 +515,7 @@ class TextToSpeech:
                 "sampler": "dpm++2m",
             },
             "very_fastv2": {
-                "num_autoregressive_samples": 42,
+                "num_autoregressive_samples": 38,
                 "diffusion_iterations": 30,
                 "sampler": "dpm++2m",
             },
@@ -551,8 +551,8 @@ class TextToSpeech:
         # autoregressive generation parameters follow
         num_autoregressive_samples=512,
         temperature=0.8, #0.8
-        length_penalty=1.0, #1
-        repetition_penalty=2.1, # 2
+        length_penalty=0.9, #1
+        repetition_penalty=1.9, # 2
         top_p=0.8,
         max_mel_tokens=500,
         # CVVP parameters follow
