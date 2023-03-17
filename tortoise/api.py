@@ -206,9 +206,9 @@ class TextToSpeech:
         self,
         autoregressive_batch_size=None,
         models_dir=MODELS_DIR,
-        enable_redaction=True,
+        enable_redaction=False,
         device=None,
-        high_vram=False,
+        high_vram=True,
         kv_cache=True,
         ar_checkpoint=None,
         clvp_checkpoint=None,
@@ -551,17 +551,17 @@ class TextToSpeech:
         # autoregressive generation parameters follow
         num_autoregressive_samples=512,
         temperature=0.8, #0.8
-        length_penalty=0.9, #1
-        repetition_penalty=1.9, # 2
-        top_p=0.8,
+        length_penalty=1.2, #1
+        repetition_penalty=2.2, # 2
+        top_p=0.7, #0.8
         max_mel_tokens=500,
         # CVVP parameters follow
-        cvvp_amount=0.0,
+        cvvp_amount=0.5,
         # diffusion generation parameters follow
         diffusion_iterations=100,
         cond_free=True,
         cond_free_k=2,
-        diffusion_temperature=1.0,
+        diffusion_temperature=0.75, #turn this down for more smearing and less static?
         sampler="ddim",
         half=True,
         original_tortoise=False,
