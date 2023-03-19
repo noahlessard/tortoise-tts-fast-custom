@@ -485,12 +485,12 @@ class TextToSpeech:
         """
         # Use generally found best tuning knobs for generation.
         settings = {
-            "temperature": 0.2,
-            "length_penalty": 1.0,
-            "repetition_penalty": 2.0,
-            "top_p": 0.8,
+            "temperature": 0.3, # 0.2
+            "length_penalty": 0.8, #1
+            "repetition_penalty": 2.1,
+            "top_p": 0.75, #0.8
             "cond_free_k": 2.0,
-            "diffusion_temperature": 1.0,
+            "diffusion_temperature": 0.8, #1.0
         }
         # Presets are defined here.
         presets = {
@@ -515,7 +515,7 @@ class TextToSpeech:
                 "sampler": "dpm++2m",
             },
             "very_fastv2": {
-                "num_autoregressive_samples": 38,
+                "num_autoregressive_samples": 36,
                 "diffusion_iterations": 30,
                 "sampler": "dpm++2m",
             },
@@ -550,9 +550,9 @@ class TextToSpeech:
         latent_averaging_mode=0, #0
         # autoregressive generation parameters follow
         num_autoregressive_samples=512,
-        temperature=0.8, #0.8
-        length_penalty=1.2, #1
-        repetition_penalty=2.2, # 2
+        temperature=0.7, #0.8
+        length_penalty=0.8, #1
+        repetition_penalty=2.1, # 2
         top_p=0.7, #0.8
         max_mel_tokens=500,
         # CVVP parameters follow
@@ -561,7 +561,7 @@ class TextToSpeech:
         diffusion_iterations=100,
         cond_free=True,
         cond_free_k=2,
-        diffusion_temperature=0.75, #turn this down for more smearing and less static?
+        diffusion_temperature=0.7, #turn this down for more smearing and less static? 0.8
         sampler="ddim",
         half=True,
         original_tortoise=False,
